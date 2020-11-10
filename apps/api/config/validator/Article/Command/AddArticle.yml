@@ -1,0 +1,8 @@
+Smartengo\Domain\Article\Command\AddArticle:
+    properties:
+        name:
+            - NotBlank: ~
+        reference:
+            - NotBlank: ~
+        content:
+            - NotBlank: ~
