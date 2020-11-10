@@ -53,12 +53,12 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "Smartengo\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Tests\\": "tests/"
+            "Tests\\": "tests/"
         }
     },
     "replace": {

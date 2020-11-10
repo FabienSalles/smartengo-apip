@@ -1,6 +1,6 @@
 <?php
 
-use App\Kernel;
+use Smartengo\Kernel;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 
 require dirname(__DIR__) . '/config/bootstrap.php';

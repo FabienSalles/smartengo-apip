@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace Smartengo\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;

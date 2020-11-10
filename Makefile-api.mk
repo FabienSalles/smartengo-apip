@@ -8,3 +8,6 @@ api/php-cs-fix:
 
 api/phpstan:
 	$(DC_EXEC_API_PHP) bin/phpstan analyse --memory-limit=-1
+
+api/cc:
+	$(DC_EXEC_API_PHP) rm -rf var/cache/*
