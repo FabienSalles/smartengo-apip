@@ -3,6 +3,7 @@
 namespace Smartengo\Tests\Unit\Core\Validator;
 
 use Smartengo\Domain\Article\Command\AddArticle;
+use Smartengo\Domain\Article\Command\UpdateArticle;
 use Smartengo\Domain\Core\Builder;
 use Symfony\Component\Validator\Validation;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -14,7 +15,8 @@ class ValidatorBuilder implements Builder
     private const BASE_VALIDATOR = 'config/validator/';
 
     private const MAPPING = [
-        AddArticle::class => self:: BASE_VALIDATOR.'Article/Command/AddArticle.yml',
+        AddArticle::class => self:: BASE_VALIDATOR.'article.yml',
+        UpdateArticle::class => self:: BASE_VALIDATOR.'article.yml',
     ];
 
     public function __construct()

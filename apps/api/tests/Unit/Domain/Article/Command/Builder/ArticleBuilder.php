@@ -1,14 +1,15 @@
 <?php
 
-namespace Smartengo\Tests\Unit\Domain\Article\Command;
+namespace Smartengo\Tests\Unit\Domain\Article\Command\Builder;
 
-use Smartengo\Domain\Article\Command\AddArticle;
+use Faker\Factory;
+use Smartengo\Domain\Article\Command\Article;
 use Smartengo\Domain\Core\Builder;
 use Smartengo\Domain\Core\Identifier;
 
-class AddArticleBuilder implements Builder
+abstract class ArticleBuilder implements Builder
 {
-    private string $id;
+    protected string $id;
     private string $name;
     private string $reference;
     private string $content;
@@ -16,11 +17,12 @@ class AddArticleBuilder implements Builder
 
     public function __construct()
     {
+        $faker = Factory::create();
         $this->id = Identifier::generate();
-        $this->name = 'one name';
-        $this->reference = 'one reference';
-        $this->content = 'one content';
-        $this->draft = true;
+        $this->name = $faker->name;
+        $this->reference = $faker->company;
+        $this->content = $faker->text;
+        $this->draft = $faker->boolean;
     }
 
     public function withName(string $name): self
@@ -58,15 +60,14 @@ class AddArticleBuilder implements Builder
         return $this;
     }
 
-    public function build(): AddArticle
+    protected function buildArticle(Article $article): Article
     {
-        $command = new AddArticle();
-        $command->id = $this->id;
-        $command->name = $this->name;
-        $command->reference = $this->reference;
-        $command->content = $this->content;
-        $command->draft = $this->draft;
+        $article->id = $this->id;
+        $article->name = $this->name;
+        $article->reference = $this->reference;
+        $article->content = $this->content;
+        $article->draft = $this->draft;
 
-        return $command;
+        return $article;
     }
 }

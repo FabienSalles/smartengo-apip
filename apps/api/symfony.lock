@@ -110,6 +110,9 @@
     "easyrdf/easyrdf": {
         "version": "0.9.1"
     },
+    "fakerphp/faker": {
+        "version": "v1.10.1"
+    },
     "fig/link-util": {
         "version": "1.1.1"
     },

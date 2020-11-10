@@ -3,6 +3,7 @@
 namespace Smartengo\Domain\Article\Entity;
 
 use Smartengo\Domain\Article\Command\AddArticle;
+use Smartengo\Domain\Article\Command\UpdateArticle;
 
 class Article
 {
@@ -53,16 +54,31 @@ class Article
         return $this->updatedAt;
     }
 
-    public static function createWith(AddArticle $command): self
+    public function updateWith(UpdateArticle $command): self
     {
-        $article = new self();
-        $article->id = $command->id;
+        self::setCommonProperties($this, $command);
+
+        return $this;
+    }
+
+    private static function setCommonProperties(self $article, \Smartengo\Domain\Article\Command\Article $command): self
+    {
         $article->name = $command->name;
         $article->reference = $command->reference;
         $article->content = $command->content;
         $article->draft = $command->draft;
-        $article->createdAt = new \DateTimeImmutable();
         $article->updatedAt = new \DateTimeImmutable();
+
+        return $article;
+    }
+
+    public static function createWith(AddArticle $command): self
+    {
+        $article = new self();
+        $article->id = $command->id;
+        $article->createdAt = new \DateTimeImmutable();
+
+        self::setCommonProperties($article, $command);
 
         return $article;
     }

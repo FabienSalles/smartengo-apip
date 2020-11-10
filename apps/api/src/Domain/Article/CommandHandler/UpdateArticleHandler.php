@@ -2,23 +2,24 @@
 
 namespace Smartengo\Domain\Article\CommandHandler;
 
-use Smartengo\Domain\Article\Command\AddArticle;
-use Smartengo\Domain\Article\Entity\Article;
+use Smartengo\Domain\Article\Command\UpdateArticle;
 use Smartengo\Domain\Core\InvalidCommandException;
 use Symfony\Component\Validator\ConstraintViolationList;
 
-class AddArticleHandler extends ArticleHandler
+class UpdateArticleHandler extends ArticleHandler
 {
-    public function __invoke(AddArticle $command): void
+    public function __invoke(UpdateArticle $command): void
     {
         /** @var ConstraintViolationList $violations */
         $violations = $this->validator->validate($command);
 
         if ($violations->count()) {
-            throw new InvalidCommandException(AddArticle::class, $violations);
+            throw new InvalidCommandException(UpdateArticle::class, $violations);
         }
 
-        $article = Article::createWith($command);
+        $article = $this->repository->find($command->id);
+        $article->updateWith($command);
+
         $this->repository->save($article);
     }
 }

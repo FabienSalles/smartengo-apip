@@ -1,4 +1,4 @@
-Smartengo\Domain\Article\Command\AddArticle:
+Smartengo\Domain\Article\Command\Article:
     properties:
         name:
             - NotBlank: ~
