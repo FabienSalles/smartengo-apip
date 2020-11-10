@@ -4,6 +4,7 @@ parameters:
 	level: max
 	paths:
 		- src
+	checkMissingIterableValueType: false
 	symfony:
 		container_xml_path: var/cache/dev/Smartengo_KernelDevDebugContainer.xml
 		console_application_loader: tests/console-application.php

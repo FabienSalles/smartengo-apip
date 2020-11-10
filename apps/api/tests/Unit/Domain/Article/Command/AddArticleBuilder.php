@@ -4,14 +4,24 @@ namespace Smartengo\Tests\Unit\Domain\Article\Command;
 
 use Smartengo\Domain\Article\Command\AddArticle;
 use Smartengo\Domain\Core\Builder;
+use Smartengo\Domain\Core\Identifier;
 
 class AddArticleBuilder implements Builder
 {
-    private $id;
-    private string $name = 'one name';
-    private string $reference = 'one reference';
-    private string $content = 'one content';
-    private bool $draft = true;
+    private string $id;
+    private string $name;
+    private string $reference;
+    private string $content;
+    private bool $draft;
+
+    public function __construct()
+    {
+        $this->id = Identifier::generate();
+        $this->name = 'one name';
+        $this->reference = 'one reference';
+        $this->content = 'one content';
+        $this->draft = true;
+    }
 
     public function withName(string $name): self
     {
