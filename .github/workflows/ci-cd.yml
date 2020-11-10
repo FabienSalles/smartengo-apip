@@ -75,8 +75,8 @@ jobs:
             --set php.output=type=docker \
       - name: Validate composer.json
         run: |
-          if jq -e '.extra.symfony.id != null' api/composer.json > /dev/null; then
-            echo 'api/composer.json must not have extra.symfony.id' 1>&2
+          if jq -e '.extra.symfony.id != null' apps/api/composer.json > /dev/null; then
+            echo 'apps/api/composer.json must not have extra.symfony.id' 1>&2
             exit 1
           fi
           docker-compose run --no-deps --entrypoint '' --rm -T php composer validate --no-check-publish
@@ -244,4 +244,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Lint
-        run: ct lint --all --chart-dirs api/helm/api
+        run: ct lint --all --chart-dirs apps/api/helm/api
