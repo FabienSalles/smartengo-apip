@@ -1,0 +1,18 @@
+# Article
+Smartengo\Domain\Article\Command\AddArticle:
+    collectionOperations:
+        post:
+            path: /articles
+            controller: Smartengo\Infrastructure\ApiPlatform\Action\InitializeCommandAction
+            write: false
+    itemOperations: []
+    attributes:
+        messenger: true
+        write_resource: Smartengo\Domain\Article\Entity\Article
+        
+Smartengo\Domain\Article\Entity\Article:
+    collectionOperations:
+        get: ~
+    itemOperations:
+        get: ~
+

@@ -2,10 +2,10 @@
 
 namespace Smartengo\Domain\Article\Command;
 
-class Article
+use Smartengo\Domain\Core\IdentifierAwareCommand;
+
+class Article extends IdentifierAwareCommand
 {
-    /** @var string */
-    public $id;
     public string $name;
     public string $reference;
     public string $content;

@@ -19,7 +19,7 @@ class UpdateArticleHandlerTest extends ArticleHandlerTest
 
     private ArticleRepository $repository;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->repository = new InMemoryArticleRepository();
         $this->handler = new UpdateArticleHandler(
