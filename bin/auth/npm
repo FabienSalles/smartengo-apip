@@ -1,0 +1,11 @@
+#!/bin/bash
+
+CONTAINER_NAME="auth"
+CONTAINER_ID="$(docker-compose ps -q ${CONTAINER_NAME})"
+CONTAINER_INSTANCE="$(docker ps --filter="id=${CONTAINER_ID}" -q)"
+
+if [[ -z ${CONTAINER_INSTANCE} ]]; then
+    docker-compose run --rm --entrypoint npm ${CONTAINER_NAME} "$@"
+else
+    docker-compose exec ${CONTAINER_NAME} npm "$@"
+fi

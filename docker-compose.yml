@@ -69,6 +69,20 @@ services:
       - target: 5432
         published: 5432
         protocol: tcp
+        
+  auth:
+    container_name: app
+    restart: always
+    build: ./apps/auth
+    volumes:
+      - ./apps/auth:/usr/src/app
+    environment:
+      - PORT=4000
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+      - dev-tls
 
   #client:
   #  build:
