@@ -1,0 +1,22 @@
+{
+  "synchronize": true,
+  "logging": false,
+  "entities": [
+    "src/Domain/**/Entity/*.ts"
+  ],
+  "migrations": [
+    "src/Infrastructure/TypeORM/Migration/*.ts"
+  ],
+  "subscribers": [
+    "src/Infrastructure/TypeORM/Subscriber/*.ts"
+  ],
+  "cli": {
+    "migrationsDir": "src/Infrastructure/TypeORM/Migration"
+  },
+  "type": "postgres",
+  "host": "db",
+  "username": "api-platform",
+  "password": "smartengo",
+  "database": "api",
+  "migrationsTableName": "auth_migration"
+}
