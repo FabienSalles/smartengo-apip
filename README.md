@@ -1,6 +1,6 @@
 # Smartengo App
 ## Intro
-This repository contains at the moment one app.
+This repository contains at the moment 2 app.
 ## Installation
 You just need to use the Makefile and launch `make up`
 Everything should works fine (at least on Ubuntu)
@@ -13,4 +13,8 @@ For fun and to experience new things, I used :
 
 ### Check if the app works
 Launch `make api/test` and look if everything is green on unit and functional tests
-<p align="center"><img src="/img/demo.gif?raw=true"/></p>
+
+## Auth
+Auth is a dockerized Express app.
+I use Typescript and an ORM (TypeORM) in order to create a migration for an user table
+I try to create and test an endpoint with Jest and SuperTest but it didn't works
