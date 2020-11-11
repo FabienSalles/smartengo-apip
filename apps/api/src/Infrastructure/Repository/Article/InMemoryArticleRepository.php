@@ -3,6 +3,7 @@
 namespace Smartengo\Infrastructure\Repository\Article;
 
 use Smartengo\Domain\Article\Entity\Article;
+use Smartengo\Domain\Article\Entity\Tag;
 use Smartengo\Domain\Article\Repository\ArticleRepository;
 use Smartengo\Domain\Core\NotFoundException;
 
@@ -22,6 +23,19 @@ class InMemoryArticleRepository implements ArticleRepository
         }
 
         return $this->articles[$id];
+    }
+
+    public function getByTags(array $tags): array
+    {
+        return array_filter(
+            $this->articles,
+            static fn (Article $article) => count(
+                array_intersect($tags, array_map(
+                    static fn (Tag $tag) => $tag->getTitle(),
+                    $article->getTags()->toArray()
+                ))
+            )
+        );
     }
 
     public function getAll(): array

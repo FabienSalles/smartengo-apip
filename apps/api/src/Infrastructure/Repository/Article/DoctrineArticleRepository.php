@@ -42,6 +42,23 @@ class DoctrineArticleRepository extends Repository implements ArticleRepository
             ->getArrayResult();
     }
 
+    public function getByTags(array $tags): array
+    {
+        $qb = $this
+            ->createQueryBuilder('a')
+            ->leftJoin('a.tags', 't');
+
+        foreach ($tags as $i => $tag) {
+            $qb
+                ->orWhere(sprintf('t.title = :title%s', $i))
+                ->setParameter(sprintf('title%s', $i), $tag);
+        }
+
+        return $qb
+            ->getQuery()
+            ->getArrayResult();
+    }
+
     public function remove(Article $article): void
     {
         $this->getEntityManager()->remove($article);

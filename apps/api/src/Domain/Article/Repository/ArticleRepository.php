@@ -12,5 +12,7 @@ interface ArticleRepository
 
     public function getAll(): array;
 
+    public function getByTags(array $tags): array;
+
     public function remove(Article $article): void;
 }

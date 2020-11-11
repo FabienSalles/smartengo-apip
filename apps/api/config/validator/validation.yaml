@@ -17,10 +17,13 @@ Smartengo\Domain\Article\Command\Article:
                   - Smartengo\Infrastructure\Symfony\Validator\TagExist: ~
 
 Smartengo\Domain\Article\Command\AddTag:
-    constraints:
-        
     properties:
         title:
             - Sequentially:
                 - NotBlank: ~
                 - Smartengo\Infrastructure\Symfony\Validator\UniqueTag: ~
+                  
+Smartengo\Domain\Article\Query\GetArticlesByTags:
+    properties:
+        tags:
+            - NotBlank: ~
