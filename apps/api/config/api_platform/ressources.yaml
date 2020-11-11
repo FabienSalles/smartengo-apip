@@ -4,8 +4,20 @@ Smartengo\Domain\Article\Command\AddArticle:
         post:
             path: /articles
             controller: Smartengo\Infrastructure\ApiPlatform\Action\InitializeCommandAction
-            write: false
+            write: false # use custom writer instead
     itemOperations: []
+    attributes:
+        messenger: true
+        write_resource: Smartengo\Domain\Article\Entity\Article
+        
+Smartengo\Domain\Article\Command\UpdateArticle:
+    collectionOperations: []
+    itemOperations:
+        put:
+            path: /articles/{id}
+            controller: Smartengo\Infrastructure\ApiPlatform\Action\InitializeCommandAction
+            write: false
+            read: false
     attributes:
         messenger: true
         write_resource: Smartengo\Domain\Article\Entity\Article

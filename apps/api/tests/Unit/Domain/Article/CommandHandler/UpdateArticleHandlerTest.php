@@ -31,7 +31,7 @@ class UpdateArticleHandlerTest extends ArticleHandlerTest
     /**
      * @test
      */
-    public function aValidArticleShouldBeCorrectlySaved(): void
+    public function aValidArticleShouldBeCorrectlyUpdated(): void
     {
         // initialize an existing Article
         $existingArticle = (new AddArticleBuilder())->build();

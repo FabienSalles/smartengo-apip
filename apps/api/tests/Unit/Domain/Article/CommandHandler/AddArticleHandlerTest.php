@@ -30,7 +30,7 @@ class AddArticleHandlerTest extends ArticleHandlerTest
     /**
      * @test
      */
-    public function aValidArticleShouldBeCorrectlySaved(): void
+    public function aValidArticleShouldBeCorrectlyAdded(): void
     {
         /** @var AddArticle $command */
         $command = $this->getBuilder()->build();

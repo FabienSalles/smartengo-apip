@@ -13,11 +13,21 @@ final class InitializeCommandAction
         $this->requestStack = $requestStack;
     }
 
-    public function __invoke(object $data = null): object
+    public function __invoke(object $data = null): ?object
     {
-        if (null === $data && null !== $this->requestStack->getCurrentRequest()) {
+        if (null === $this->requestStack->getCurrentRequest()) {
+            return $data;
+        }
+
+        if (null === $data) {
             $class = $this->requestStack->getCurrentRequest()->attributes->get('_api_resource_class');
             $data = new $class();
+        }
+
+        foreach ($this->requestStack->getCurrentRequest()->attributes->all() as $name => $value) {
+            if (property_exists(\get_class($data), $name)) {
+                $data->$name = $value;
+            }
         }
 
         return $data;

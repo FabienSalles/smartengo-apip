@@ -3,12 +3,10 @@
 namespace Smartengo\Tests\Functional\Api\Article;
 
 use Faker\Factory;
-use Smartengo\Domain\Article\Repository\ArticleRepository;
-use Smartengo\Tests\Functional\Api\ApiTestCase;
 use Smartengo\Tests\Functional\Api\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-class AddArticleTest extends ApiTestCase
+class AddArticleTest extends ArticleTest
 {
     /**
      * @test
@@ -16,7 +14,7 @@ class AddArticleTest extends ApiTestCase
     public function validArticleShouldBeAdded(): void
     {
         $faker = Factory::create();
-        $response = static::createClient()->request(Request::METHOD_POST, Route::ARTICLE, [
+        $response = static::$client->request(Request::METHOD_POST, Route::ARTICLE, [
             'headers' => ['content-type' => 'application/ld+json'],
             'body' => json_encode([
                 'name' => $faker->name,
@@ -39,7 +37,7 @@ class AddArticleTest extends ApiTestCase
     public function invalidArticleShouldRenderAnError(): void
     {
         $faker = Factory::create();
-        $response = static::createClient()->request(Request::METHOD_POST, Route::ARTICLE, [
+        $response = static::$client->request(Request::METHOD_POST, Route::ARTICLE, [
             'headers' => ['content-type' => 'application/ld+json'],
             'body' => json_encode([
                 'reference' => $faker->company,
@@ -62,13 +60,5 @@ class AddArticleTest extends ApiTestCase
                 ],
             ]
         );
-    }
-
-    private function getRepository(): ArticleRepository
-    {
-        /** @var ArticleRepository $repository */
-        $repository = self::$container->get(ArticleRepository::class);
-
-        return $repository;
     }
 }

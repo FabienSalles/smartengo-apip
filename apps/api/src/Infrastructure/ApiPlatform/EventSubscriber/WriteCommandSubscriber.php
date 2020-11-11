@@ -68,7 +68,7 @@ final class WriteCommandSubscriber implements EventSubscriberInterface
             case 'PUT':
             case 'PATCH':
             case 'POST':
-                $$this->dataPersister->persist($controllerResult);
+                $this->dataPersister->persist($controllerResult);
                 $event->setControllerResult(null);
                 $request->attributes->set('_api_write_item_iri', $this->iriConverter->getItemIriFromResourceClass($writeResource, [$controllerResult->id]));
                 break;
