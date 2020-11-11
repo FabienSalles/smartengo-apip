@@ -30,6 +30,12 @@ final class InitializeCommandAction
             }
         }
 
+        foreach ($this->requestStack->getCurrentRequest()->query->all() as $name => $value) {
+            if (property_exists(\get_class($data), $name)) {
+                $data->$name = $value;
+            }
+        }
+
         return $data;
     }
 }
