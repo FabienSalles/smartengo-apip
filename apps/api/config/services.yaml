@@ -34,6 +34,7 @@ services:
     Smartengo\Domain\Core\CommandBus: '@Smartengo\Infrastructure\Symfony\Messenger\MessengerCommandBus'
     Smartengo\Domain\Core\QueryBus: '@Smartengo\Infrastructure\Symfony\Messenger\MessengerQueryBus'
     Smartengo\Domain\Article\Repository\ArticleRepository: '@Smartengo\Infrastructure\Repository\Article\DoctrineArticleRepository'
+    Smartengo\Domain\Article\Repository\TagRepository: '@Smartengo\Infrastructure\Repository\Article\DoctrineTagRepository'
     
     #### Externals
 

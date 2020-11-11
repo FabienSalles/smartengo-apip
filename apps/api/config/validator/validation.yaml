@@ -12,3 +12,8 @@ Smartengo\Domain\Article\Command\Article:
             - NotBlank: ~
         content:
             - NotBlank: ~
+
+Smartengo\Domain\Article\Command\AddTag:
+    properties:
+        title:
+            -   NotBlank: ~
