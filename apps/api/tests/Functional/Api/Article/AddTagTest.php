@@ -17,7 +17,7 @@ class AddTagTest extends TagTest
         $response = static::$client->request(Request::METHOD_POST, Route::TAG, [
             'headers' => ['content-type' => 'application/ld+json'],
             'body' => json_encode([
-                'title' => $faker->title,
+                'title' => $faker->name,
             ], JSON_THROW_ON_ERROR),
         ]);
 

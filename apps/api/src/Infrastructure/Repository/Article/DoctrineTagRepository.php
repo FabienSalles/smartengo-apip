@@ -39,6 +39,22 @@ class DoctrineTagRepository extends Repository implements TagRepository
         }
     }
 
+    public function getByTitle(string $title): Tag
+    {
+        try {
+            return $this
+                ->createQueryBuilder('t')
+                ->where('t.title = :title')
+                ->setParameter('title', $title)
+                ->getQuery()
+                ->getSingleResult();
+        } catch (NoResultException $e) {
+            throw new NotFoundException(sprintf('The tag with the title %s was not found.', $title), 0, $e);
+        } catch (NonUniqueResultException $e) {
+            throw new UnexpectedResultException($e);
+        }
+    }
+
     public function remove(Tag $tag): void
     {
         $this->getEntityManager()->remove($tag);

@@ -3,12 +3,22 @@
 namespace Smartengo\Tests\Unit\Domain\Article\Command;
 
 use PHPUnit\Framework\TestCase;
+use Smartengo\Domain\Article\Entity\Tag;
+use Smartengo\Domain\Article\Repository\TagRepository;
+use Smartengo\Infrastructure\Repository\Article\InMemoryTagRepository;
 use Smartengo\Tests\Unit\Core\Validator\ValidatorTrait;
 use Smartengo\Tests\Unit\Domain\Article\Command\Builder\AddTagBuilder;
 
 class AddTagTest extends TestCase
 {
     use ValidatorTrait;
+
+    private TagRepository $repository;
+
+    public function setUp(): void
+    {
+        $this->repository = new InMemoryTagRepository();
+    }
 
     /**
      * @test
@@ -32,7 +42,7 @@ class AddTagTest extends TestCase
     /**
      * @test
      */
-    public function tagShouldHaveAValidId(): void
+    public function aTagShouldHaveAValidId(): void
     {
         $command = (new AddTagBuilder())
             ->withId('invalid')
@@ -51,7 +61,7 @@ class AddTagTest extends TestCase
     /**
      * @test
      */
-    public function tagShouldHaveATitle(): void
+    public function aTagShouldHaveATitle(): void
     {
         $command = (new AddTagBuilder())
             ->withTitle('')
@@ -63,6 +73,29 @@ class AddTagTest extends TestCase
         self::assertCount(1, $violationList);
         self::assertSame(
             'This value should not be blank.',
+            $this->findViolationsByPropertyName($violationList, 'title')[0]->getMessage()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function aTagShouldHaveAUniqueTitle(): void
+    {
+        $command = (new AddTagBuilder())
+            ->build();
+        $this->repository->save(Tag::createWith($command));
+
+        $command = (new AddTagBuilder())
+            ->withTitle($command->title)
+            ->build();
+
+        $validator = $this->getValidator();
+        $violationList = $validator->validate($command);
+
+        self::assertCount(1, $violationList);
+        self::assertSame(
+            sprintf('The title %s of the tag is already used', $command->title),
             $this->findViolationsByPropertyName($violationList, 'title')[0]->getMessage()
         );
     }

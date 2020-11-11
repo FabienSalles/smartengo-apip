@@ -14,6 +14,8 @@ Smartengo\Domain\Article\Command\Article:
             - NotBlank: ~
 
 Smartengo\Domain\Article\Command\AddTag:
+    constraints:
+        - Smartengo\Infrastructure\Symfony\Validator\UniqueTag:
     properties:
         title:
-            -   NotBlank: ~
+            - NotBlank: ~

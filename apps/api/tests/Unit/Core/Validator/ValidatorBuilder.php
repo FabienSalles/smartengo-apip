@@ -14,7 +14,9 @@ class ValidatorBuilder implements Builder
 
     public function __construct()
     {
-        $this->validatorBuilder = Validation::createValidatorBuilder()->addYamlMapping(self::VALIDATOR_FILE);
+        $this->validatorBuilder = Validation::createValidatorBuilder()
+            ->setConstraintValidatorFactory(new StubConstraintValidatorFactory())
+            ->addYamlMapping(self::VALIDATOR_FILE);
     }
 
     public function build(): ValidatorInterface

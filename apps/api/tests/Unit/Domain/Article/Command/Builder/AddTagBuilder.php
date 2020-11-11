@@ -16,7 +16,7 @@ class AddTagBuilder implements Builder
     {
         $faker = Factory::create();
         $this->id = Identifier::generate();
-        $this->title = $faker->title;
+        $this->title = $faker->name;
     }
 
     public function withId(string $id): self

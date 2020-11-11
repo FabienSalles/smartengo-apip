@@ -6,5 +6,5 @@ use Smartengo\Domain\Core\IdentifierAwareCommand;
 
 class AddTag extends IdentifierAwareCommand
 {
-    public string $title;
+    public ?string $title = null;
 }
