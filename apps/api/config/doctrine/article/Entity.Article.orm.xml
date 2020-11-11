@@ -12,6 +12,8 @@
 
         <field name="createdAt" column="created_at" type="datetime_immutable" />
         <field name="updatedAt" column="updated_at" type="datetime_immutable" />
+
+        <many-to-many field="tags" target-entity="Smartengo\Domain\Article\Entity\Tag" />
     </entity>
 
 </doctrine-mapping>

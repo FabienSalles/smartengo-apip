@@ -10,4 +10,5 @@ class Article extends IdentifierAwareCommand
     public string $reference;
     public string $content;
     public bool $draft = true;
+    public array $tags = [];
 }

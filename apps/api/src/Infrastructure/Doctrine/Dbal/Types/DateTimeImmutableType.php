@@ -26,4 +26,9 @@ final class DateTimeImmutableType extends DateTimeType
     {
         return true;
     }
+
+    public function getName()
+    {
+        return 'datetime_immutable';
+    }
 }

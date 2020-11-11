@@ -24,27 +24,18 @@ final class Version20201111182445 extends AbstractMigration
         $this->addSql('ALTER TABLE article ALTER created_at DROP DEFAULT');
         $this->addSql('ALTER TABLE article ALTER updated_at TYPE TIMESTAMP(0) WITHOUT TIME ZONE');
         $this->addSql('ALTER TABLE article ALTER updated_at DROP DEFAULT');
-        $this->addSql('ALTER TABLE article ALTER updated_at SET NOT NULL');
+        $this->addSql('COMMENT ON COLUMN article.created_at IS \'(DC2Type:datetime_immutable)\'');
+        $this->addSql('COMMENT ON COLUMN article.updated_at IS \'(DC2Type:datetime_immutable)\'');
         $this->addSql('ALTER TABLE tag ALTER created_at TYPE TIMESTAMP(0) WITHOUT TIME ZONE');
         $this->addSql('ALTER TABLE tag ALTER created_at DROP DEFAULT');
         $this->addSql('ALTER TABLE tag ALTER updated_at TYPE TIMESTAMP(0) WITHOUT TIME ZONE');
         $this->addSql('ALTER TABLE tag ALTER updated_at DROP DEFAULT');
-        $this->addSql('ALTER TABLE tag ALTER updated_at SET NOT NULL');
+        $this->addSql('COMMENT ON COLUMN tag.created_at IS \'(DC2Type:datetime_immutable)\'');
+        $this->addSql('COMMENT ON COLUMN tag.updated_at IS \'(DC2Type:datetime_immutable)\'');
     }
 
     public function down(Schema $schema) : void
     {
-        // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE SCHEMA public');
-        $this->addSql('ALTER TABLE article ALTER created_at TYPE TIMESTAMP(0) WITHOUT TIME ZONE');
-        $this->addSql('ALTER TABLE article ALTER created_at DROP DEFAULT');
-        $this->addSql('ALTER TABLE article ALTER updated_at TYPE TIMESTAMP(0) WITHOUT TIME ZONE');
-        $this->addSql('ALTER TABLE article ALTER updated_at DROP DEFAULT');
-        $this->addSql('ALTER TABLE article ALTER updated_at DROP NOT NULL');
-        $this->addSql('ALTER TABLE tag ALTER created_at TYPE TIMESTAMP(0) WITHOUT TIME ZONE');
-        $this->addSql('ALTER TABLE tag ALTER created_at DROP DEFAULT');
-        $this->addSql('ALTER TABLE tag ALTER updated_at TYPE TIMESTAMP(0) WITHOUT TIME ZONE');
-        $this->addSql('ALTER TABLE tag ALTER updated_at DROP DEFAULT');
-        $this->addSql('ALTER TABLE tag ALTER updated_at DROP NOT NULL');
+        $this->throwIrreversibleMigrationException();
     }
 }

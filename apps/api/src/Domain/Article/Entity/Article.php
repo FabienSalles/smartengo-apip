@@ -2,6 +2,8 @@
 
 namespace Smartengo\Domain\Article\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Smartengo\Domain\Article\Command\AddArticle;
 use Smartengo\Domain\Article\Command\UpdateArticle;
 
@@ -14,9 +16,11 @@ class Article
     private bool $draft;
     private \DateTimeImmutable $createdAt;
     private \DateTimeImmutable $updatedAt;
+    private Collection $tags;
 
     private function __construct()
     {
+        $this->tags = new ArrayCollection();
     }
 
     public function getId(): string
@@ -44,6 +48,11 @@ class Article
         return $this->draft;
     }
 
+    public function getTags(): Collection
+    {
+        return $this->tags;
+    }
+
     public function getCreatedAt(): \DateTimeImmutable
     {
         return $this->createdAt;
@@ -52,6 +61,13 @@ class Article
     public function getUpdatedAt(): \DateTimeImmutable
     {
         return $this->updatedAt;
+    }
+
+    public function withTags(array $tags): self
+    {
+        $this->tags = new ArrayCollection($tags);
+
+        return $this;
     }
 
     public function updateWith(UpdateArticle $command): self
