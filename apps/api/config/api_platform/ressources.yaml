@@ -53,4 +53,21 @@ Smartengo\Domain\Article\Entity\Article:
     collectionOperations: []
     itemOperations:
         get: ~ # use only for uri converter
+        
+### Tag
 
+Smartengo\Domain\Article\Command\AddTag:
+    collectionOperations:
+        post:
+            path: /tags
+            controller: Smartengo\Infrastructure\ApiPlatform\Action\InitializeCommandAction
+            write: false # use custom writer instead
+    itemOperations: []
+    attributes:
+        messenger: true
+        write_resource: Smartengo\Domain\Article\Entity\Tag
+
+Smartengo\Domain\Article\Entity\Tag:
+    collectionOperations: []
+    itemOperations:
+        get: ~ # use only for uri converter
