@@ -8,11 +8,14 @@ parameters:
 services:
     # default configuration for services in *this* file
     _defaults:
+        public: false
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
     _instanceof:
         Smartengo\Domain\Core\CommandHandler:
+            tags: [ { name: messenger.message_handler, bus: messenger.bus.command } ]
+        Smartengo\Domain\Core\QueryHandler:
             tags: [ { name: messenger.message_handler, bus: messenger.bus.command } ]
             
     Smartengo\:
@@ -26,11 +29,12 @@ services:
         resource: '../src/Infrastructure/ApiPlatform/Action'
         tags: [ 'controller.service_arguments' ]
 
-
     #### Alias
     
     Smartengo\Domain\Core\CommandBus: '@Smartengo\Infrastructure\Symfony\Messenger\MessengerCommandBus'
+    Smartengo\Domain\Core\QueryBus: '@Smartengo\Infrastructure\Symfony\Messenger\MessengerQueryBus'
     Smartengo\Domain\Article\Repository\ArticleRepository: '@Smartengo\Infrastructure\Repository\Article\DoctrineArticleRepository'
+    
     #### Externals
 
     ApiPlatform\Core\Bridge\Symfony\Messenger\DataPersister: '@api_platform.messenger.data_persister'

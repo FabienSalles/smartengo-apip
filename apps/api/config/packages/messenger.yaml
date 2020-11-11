@@ -6,6 +6,7 @@ framework:
         default_bus: messenger.bus.command
         buses:
             messenger.bus.command: ~
+            messenger.bus.query: ~
             
         transports:
             # https://symfony.com/doc/current/messenger.html#transport-configuration

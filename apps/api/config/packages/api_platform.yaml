@@ -8,3 +8,8 @@ api_platform:
     # Mercure integration, remove if unwanted
     mercure:
         hub_url: '%env(MERCURE_SUBSCRIBE_URL)%'
+    exception_to_status:
+        Smartengo\Domain\Core\InvalidCommandException: 400
+        Smartengo\Domain\Core\InvalidQueryException: 400
+        Smartengo\Domain\Core\NotFoundException: 404
+        Smartengo\Domain\Core\UnexpectedResultException: 500

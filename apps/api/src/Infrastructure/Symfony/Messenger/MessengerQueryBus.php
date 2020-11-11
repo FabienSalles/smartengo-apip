@@ -2,12 +2,13 @@
 
 namespace Smartengo\Infrastructure\Symfony\Messenger;
 
-use Smartengo\Domain\Core\CommandBus;
-use Symfony\Component\Messenger\Envelope;
+use Smartengo\Domain\Core\QueryBus;
 use Symfony\Component\Messenger\Exception\HandlerFailedException;
 use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Messenger\Stamp\HandledStamp;
+use Symfony\Component\Messenger\Stamp\StampInterface;
 
-final class MessengerCommandBus implements CommandBus
+final class MessengerQueryBus implements QueryBus
 {
     /** @var MessageBusInterface */
     private $messageBus;
@@ -17,15 +18,15 @@ final class MessengerCommandBus implements CommandBus
         $this->messageBus = $messageBus;
     }
 
-    /**
-     * duplicate of internal ApiPlatform\Core\Bridge\Symfony\Messenger\DispatchTrait for CommandDataPersister.
-     *
-     * @param mixed $message
-     */
-    public function handle($message): ?Envelope
+    public function handle($query)
     {
         try {
-            return $this->messageBus->dispatch($message);
+            $envelope = $this->messageBus->dispatch($query);
+
+            /** @var StampInterface $handledStamp */
+            $handledStamp = $envelope->last(HandledStamp::class);
+
+            return $handledStamp->getResult();
         } catch (HandlerFailedException $e) {
             // unwrap the exception thrown in handler for Symfony Messenger >= 4.3
             while ($e instanceof HandlerFailedException) {

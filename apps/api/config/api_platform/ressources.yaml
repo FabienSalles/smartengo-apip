@@ -1,4 +1,4 @@
-# Article
+### Article
 Smartengo\Domain\Article\Command\AddArticle:
     collectionOperations:
         post:
@@ -17,14 +17,27 @@ Smartengo\Domain\Article\Command\UpdateArticle:
             path: /articles/{id}
             controller: Smartengo\Infrastructure\ApiPlatform\Action\InitializeCommandAction
             write: false
-            read: false
+            read: false # use custom action instead
     attributes:
         messenger: true
         write_resource: Smartengo\Domain\Article\Entity\Article
-        
-Smartengo\Domain\Article\Entity\Article:
-    collectionOperations:
-        get: ~
+
+Smartengo\Domain\Article\Query\GetOneArticle:
+    collectionOperations: []
     itemOperations:
-        get: ~
+        get:
+            path: /articles/{id}
+            controller: Smartengo\Infrastructure\ApiPlatform\Action\InitializeCommandAction
+            read: false
+    attributes:
+        messenger: true
+    properties:
+        id:
+            identifier: true
+            
+
+Smartengo\Domain\Article\Entity\Article:
+    collectionOperations: []
+    itemOperations:
+        get: ~ # use only for uri converter
 
