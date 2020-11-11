@@ -8,5 +8,5 @@ interface ArticleRepository
 {
     public function save(Article $article): void;
 
-    public function find(string $id): Article;
+    public function get(string $id): Article;
 }

@@ -28,7 +28,7 @@ class AddArticleTest extends ArticleTest
         self::assertUriExist(Route::ARTICLE, $response);
 
         // should throw an exception if the article is not find
-        $this->getRepository()->find($this->getUriIdentifier(Route::ARTICLE, $response));
+        $this->getRepository()->get($this->getUriIdentifier(Route::ARTICLE, $response));
     }
 
     /**

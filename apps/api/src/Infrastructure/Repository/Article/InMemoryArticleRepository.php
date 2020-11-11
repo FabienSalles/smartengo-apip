@@ -15,7 +15,7 @@ class InMemoryArticleRepository implements ArticleRepository
         $this->articles[$article->getId()] = $article;
     }
 
-    public function find(string $id): Article
+    public function get(string $id): Article
     {
         if (!isset($this->articles[$id])) {
             throw new NotFoundException(sprintf('The Article %s does not exist', $id));

@@ -30,7 +30,7 @@ services:
     #### Alias
     
     Smartengo\Domain\Core\CommandBus: '@Smartengo\Infrastructure\Symfony\Messenger\MessengerCommandBus'
-    
+    Smartengo\Domain\Article\Repository\ArticleRepository: '@Smartengo\Infrastructure\Repository\Article\DoctrineArticleRepository'
     #### Externals
 
     ApiPlatform\Core\Bridge\Symfony\Messenger\DataPersister: '@api_platform.messenger.data_persister'

@@ -37,7 +37,7 @@ class AddArticleHandlerTest extends ArticleHandlerTest
 
         $this->getHandler()($command);
 
-        $article = $this->getRepository()->find($command->id);
+        $article = $this->getRepository()->get($command->id);
 
         $this->assertCommonProperties($command, $article);
         self::assertSame(

@@ -17,7 +17,7 @@ class UpdateArticleHandler extends ArticleHandler
             throw new InvalidCommandException(UpdateArticle::class, $violations);
         }
 
-        $article = $this->repository->find($command->id);
+        $article = $this->repository->get($command->id);
         $article->updateWith($command);
 
         $this->repository->save($article);
