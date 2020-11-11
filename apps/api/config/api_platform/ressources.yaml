@@ -35,6 +35,19 @@ Smartengo\Domain\Article\Query\GetOneArticle:
         id:
             identifier: true
             
+Smartengo\Domain\Article\Command\DeleteArticle:
+    collectionOperations: []
+    itemOperations:
+        delete:
+            path: /articles/{id}
+            controller: Smartengo\Infrastructure\ApiPlatform\Action\InitializeCommandAction
+            read: false
+    attributes:
+        messenger: true
+    properties:
+        id:
+            identifier: true
+            
 
 Smartengo\Domain\Article\Entity\Article:
     collectionOperations: []
