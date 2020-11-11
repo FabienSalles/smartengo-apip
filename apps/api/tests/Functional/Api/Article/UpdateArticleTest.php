@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 class UpdateArticleTest extends ArticleTest
 {
+    use TagTrait;
+
     /**
      * @test
      */
@@ -36,6 +38,40 @@ class UpdateArticleTest extends ArticleTest
 
         // should throw an exception if the article is not find
         $this->getRepository()->get($this->getUriIdentifier(Route::ARTICLE, $response));
+    }
+
+    /**
+     * @test
+     */
+    public function validArticleWithValidTagsShouldBeAdded(): void
+    {
+        $article = $this->buildArticle();
+        $faker = Factory::create();
+        $response = static::$client->request(
+            Request::METHOD_PUT,
+            Route::ARTICLE.'/'.$article->getId(),
+            [
+                'headers' => ['content-type' => 'application/ld+json'],
+                'body' => json_encode([
+                    'name' => $faker->name,
+                    'reference' => $faker->company,
+                    'content' => $faker->text,
+                    'draft' => $faker->boolean,
+                    'tags' => [
+                        $this->createTag()->getId(),
+                        $this->createTag()->getId(),
+                        $this->createTag()->getId(),
+                    ],
+                ], JSON_THROW_ON_ERROR),
+            ]
+        );
+
+        self::assertResponseStatusCodeSame(200);
+        self::assertUriExist(Route::ARTICLE, $response);
+
+        $article = $this->getRepository()->get($this->getUriIdentifier(Route::ARTICLE, $response));
+
+        self::assertCount(3, $article->getTags());
     }
 
     /**

@@ -19,6 +19,7 @@ class UpdateArticleHandler extends ArticleHandler
 
         $article = $this->repository->get($command->id);
         $article->updateWith($command);
+        $article->withTags($this->retrieveTags($command));
 
         $this->repository->save($article);
     }

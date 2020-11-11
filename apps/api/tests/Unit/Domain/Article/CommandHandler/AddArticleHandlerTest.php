@@ -9,10 +9,12 @@ use Smartengo\Infrastructure\Repository\Article\InMemoryArticleRepository;
 use Smartengo\Tests\Unit\Core\Validator\ValidatorTrait;
 use Smartengo\Tests\Unit\Domain\Article\Command\Builder\AddArticleBuilder;
 use Smartengo\Tests\Unit\Domain\Article\Command\Builder\ArticleBuilder;
+use Smartengo\Tests\Unit\Domain\Article\TagTrait;
 
 class AddArticleHandlerTest extends ArticleHandlerTest
 {
     use ValidatorTrait;
+    use TagTrait;
 
     private AddArticleHandler $handler;
 
@@ -23,7 +25,8 @@ class AddArticleHandlerTest extends ArticleHandlerTest
         $this->repository = new InMemoryArticleRepository();
         $this->handler = new AddArticleHandler(
             $this->getValidator(),
-            $this->repository
+            $this->repository,
+            $this->tagRepository
         );
     }
 
@@ -44,6 +47,27 @@ class AddArticleHandlerTest extends ArticleHandlerTest
             (new \DateTimeImmutable())->format(DATE_ATOM),
             $article->getCreatedAt()->format(DATE_ATOM)
         );
+    }
+
+    /**
+     * @test
+     */
+    public function aValidArticleWithExistingTagShouldBeCorrectlyAdded(): void
+    {
+        /** @var AddArticle $command */
+        $command = $this->getBuilder()
+            ->withTags([
+                $this->createTag()->getId(),
+                $this->createTag()->getId(),
+                $this->createTag()->getId(),
+            ])
+            ->build();
+
+        $this->getHandler()($command);
+
+        $article = $this->getRepository()->get($command->id);
+
+        self::assertCount(count($command->tags), $article->getTags());
     }
 
     protected function getBuilder(): ArticleBuilder

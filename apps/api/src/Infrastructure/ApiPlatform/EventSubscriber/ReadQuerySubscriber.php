@@ -15,7 +15,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
  * Replacement of the ReadListener in order to follow CQRS Principle and use a Query/QueryHandler concept
- * We also add validation on parameters
+ * We also add validation on parameters.
  */
 final class ReadQuerySubscriber implements EventSubscriberInterface
 {

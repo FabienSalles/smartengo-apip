@@ -3,24 +3,15 @@
 namespace Smartengo\Tests\Unit\Domain\Article\Command;
 
 use PHPUnit\Framework\TestCase;
-use Smartengo\Domain\Article\Entity\Tag;
-use Smartengo\Domain\Article\Repository\TagRepository;
 use Smartengo\Domain\Core\Identifier;
-use Smartengo\Infrastructure\Repository\Article\InMemoryTagRepository;
 use Smartengo\Tests\Unit\Core\Validator\ValidatorTrait;
-use Smartengo\Tests\Unit\Domain\Article\Command\Builder\AddTagBuilder;
 use Smartengo\Tests\Unit\Domain\Article\Command\Builder\ArticleBuilder;
+use Smartengo\Tests\Unit\Domain\Article\TagTrait;
 
 abstract class ArticleTest extends TestCase
 {
     use ValidatorTrait;
-
-    private TagRepository $tagRepository;
-
-    public function setUp(): void
-    {
-        $this->tagRepository = new InMemoryTagRepository();
-    }
+    use TagTrait;
 
     /**
      * @test
@@ -63,9 +54,9 @@ abstract class ArticleTest extends TestCase
     {
         $command = $this->getBuilder()
             ->withTags([
-                $this->tagRepository->save(Tag::createWith((new AddTagBuilder)->build())),
-                $this->tagRepository->save(Tag::createWith((new AddTagBuilder)->build())),
-                $this->tagRepository->save(Tag::createWith((new AddTagBuilder)->build()))
+                $this->createTag()->getId(),
+                $this->createTag()->getId(),
+                $this->createTag()->getId(),
             ])
             ->build();
 

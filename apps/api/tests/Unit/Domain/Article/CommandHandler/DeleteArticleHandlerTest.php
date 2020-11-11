@@ -10,6 +10,7 @@ use Smartengo\Domain\Article\Repository\ArticleRepository;
 use Smartengo\Domain\Core\Identifier;
 use Smartengo\Domain\Core\NotFoundException;
 use Smartengo\Infrastructure\Repository\Article\InMemoryArticleRepository;
+use Smartengo\Infrastructure\Repository\Article\InMemoryTagRepository;
 use Smartengo\Tests\Unit\Core\Validator\ValidatorTrait;
 use Smartengo\Tests\Unit\Domain\Article\Command\Builder\AddArticleBuilder;
 
@@ -26,7 +27,8 @@ class DeleteArticleHandlerTest extends TestCase
         $this->repository = new InMemoryArticleRepository();
         $this->handler = new DeleteArticleHandler(
             $this->getValidator(),
-            $this->repository
+            $this->repository,
+            InMemoryTagRepository::getInstance()
         );
     }
 

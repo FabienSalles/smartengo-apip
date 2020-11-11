@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Smartengo\Infrastructure\Symfony\Validator;
-
 
 use Smartengo\Domain\Article\Repository\TagRepository;
 use Smartengo\Domain\Core\NotFoundException;
@@ -18,7 +16,7 @@ class TagExistValidator extends ConstraintValidator
         $this->repository = $repository;
     }
 
-    public function validate($value, Constraint $constraint)
+    public function validate($value, Constraint $constraint): void
     {
         if (null === $value) {
             return;

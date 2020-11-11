@@ -33,8 +33,7 @@ class InMemoryTagRepository implements TagRepository
 
     public function getByTitle(string $title): Tag
     {
-
-        $tag = current(array_filter($this->tags, fn(Tag $tag) => $title === $tag->getTitle()));
+        $tag = current(array_filter($this->tags, fn (Tag $tag) => $title === $tag->getTitle()));
 
         if (false === $tag) {
             throw new NotFoundException(sprintf('The Tag with a title %s does not exist', $title));

@@ -19,6 +19,8 @@ class AddArticleHandler extends ArticleHandler
         }
 
         $article = Article::createWith($command);
+        $article->withTags($this->retrieveTags($command));
+
         $this->repository->save($article);
     }
 }
