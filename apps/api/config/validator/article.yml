@@ -6,3 +6,9 @@ Smartengo\Domain\Article\Command\Article:
             - NotBlank: ~
         content:
             - NotBlank: ~
+              
+Smartengo\Domain\Article\Query\GetOneArticle:
+    properties:
+        id:
+            - NotBlank: ~
+            - Uuid: ~
