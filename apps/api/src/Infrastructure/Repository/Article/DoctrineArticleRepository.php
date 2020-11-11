@@ -34,6 +34,20 @@ class DoctrineArticleRepository extends Repository implements ArticleRepository
         }
     }
 
+    public function getAll(): array
+    {
+        return $this
+            ->createQueryBuilder('a')
+            ->getQuery()
+            ->getArrayResult();
+    }
+
+    public function remove(Article $article): void
+    {
+        $this->getEntityManager()->remove($article);
+        $this->getEntityManager()->flush();
+    }
+
     protected function getEntityClass(): string
     {
         return Article::class;

@@ -22,7 +22,7 @@ class AddArticleHandlerTest extends ArticleHandlerTest
     {
         $this->repository = new InMemoryArticleRepository();
         $this->handler = new AddArticleHandler(
-            $this->getValidator(AddArticle::class),
+            $this->getValidator(),
             $this->repository
         );
     }

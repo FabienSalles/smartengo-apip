@@ -1,3 +1,9 @@
+Smartengo\Domain\Core\IdentifierAwareCommand:
+    properties:
+        id:
+            - NotBlank: ~
+            - Uuid: ~
+                
 Smartengo\Domain\Article\Command\Article:
     properties:
         name:
@@ -6,9 +12,3 @@ Smartengo\Domain\Article\Command\Article:
             - NotBlank: ~
         content:
             - NotBlank: ~
-              
-Smartengo\Domain\Article\Query\GetOneArticle:
-    properties:
-        id:
-            - NotBlank: ~
-            - Uuid: ~

@@ -23,4 +23,14 @@ class InMemoryArticleRepository implements ArticleRepository
 
         return $this->articles[$id];
     }
+
+    public function getAll(): array
+    {
+        return array_values($this->articles);
+    }
+
+    public function remove(Article $article): void
+    {
+        unset($this->articles[$article->getId()]);
+    }
 }

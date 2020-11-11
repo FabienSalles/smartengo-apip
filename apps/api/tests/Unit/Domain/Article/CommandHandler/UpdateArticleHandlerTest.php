@@ -2,7 +2,6 @@
 
 namespace Smartengo\Tests\Unit\Domain\Article\CommandHandler;
 
-use Smartengo\Domain\Article\Command\UpdateArticle;
 use Smartengo\Domain\Article\CommandHandler\UpdateArticleHandler;
 use Smartengo\Domain\Article\Entity\Article;
 use Smartengo\Domain\Article\Repository\ArticleRepository;
@@ -23,7 +22,7 @@ class UpdateArticleHandlerTest extends ArticleHandlerTest
     {
         $this->repository = new InMemoryArticleRepository();
         $this->handler = new UpdateArticleHandler(
-            $this->getValidator(UpdateArticle::class),
+            $this->getValidator(),
             $this->repository
         );
     }

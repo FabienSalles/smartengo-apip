@@ -3,7 +3,6 @@
 namespace Smartengo\Tests\Unit\Domain\Article\Query;
 
 use PHPUnit\Framework\TestCase;
-use Smartengo\Domain\Article\Query\GetOneArticle;
 use Smartengo\Tests\Unit\Core\Validator\ValidatorTrait;
 use Smartengo\Tests\Unit\Domain\Article\Query\Builder\GetOneArticleBuilder;
 
@@ -20,7 +19,7 @@ class GetOneArticleTest extends TestCase
             ->withId('')
             ->build();
 
-        $validator = $this->getValidator(GetOneArticle::class);
+        $validator = $this->getValidator();
         $violationList = $validator->validate($command);
 
         self::assertCount(1, $violationList);
@@ -39,7 +38,7 @@ class GetOneArticleTest extends TestCase
             ->withId('test')
             ->build();
 
-        $validator = $this->getValidator(GetOneArticle::class);
+        $validator = $this->getValidator();
         $violationList = $validator->validate($command);
 
         self::assertCount(1, $violationList);
@@ -56,7 +55,7 @@ class GetOneArticleTest extends TestCase
     {
         $command = (new GetOneArticleBuilder())->build();
 
-        $validator = $this->getValidator(GetOneArticle::class);
+        $validator = $this->getValidator();
         $violationList = $validator->validate($command);
 
         self::assertCount(0, $violationList);

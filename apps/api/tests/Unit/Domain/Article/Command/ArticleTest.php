@@ -18,7 +18,7 @@ abstract class ArticleTest extends TestCase
         $command = $this->getBuilder()
             ->build();
 
-        $validator = $this->getValidator($this->getCommandClass());
+        $validator = $this->getValidator();
         $violationList = $validator->validate($command);
 
         self::assertCount(0, $violationList);
@@ -33,7 +33,7 @@ abstract class ArticleTest extends TestCase
             ->withName('')
             ->build();
 
-        $validator = $this->getValidator($this->getCommandClass());
+        $validator = $this->getValidator();
         $violationList = $validator->validate($command);
 
         self::assertCount(1, $violationList);
@@ -52,7 +52,7 @@ abstract class ArticleTest extends TestCase
             ->withReference('')
             ->build();
 
-        $validator = $this->getValidator($this->getCommandClass());
+        $validator = $this->getValidator();
         $violationList = $validator->validate($command);
 
         self::assertCount(1, $violationList);
@@ -71,7 +71,7 @@ abstract class ArticleTest extends TestCase
             ->withContent('')
             ->build();
 
-        $validator = $this->getValidator($this->getCommandClass());
+        $validator = $this->getValidator();
         $violationList = $validator->validate($command);
 
         self::assertCount(1, $violationList);
@@ -82,6 +82,4 @@ abstract class ArticleTest extends TestCase
     }
 
     abstract protected function getBuilder(): ArticleBuilder;
-
-    abstract public function getCommandClass(): string;
 }

@@ -2,7 +2,8 @@
 
 namespace Smartengo\Domain\Article\Query;
 
-class GetOneArticle
+use Smartengo\Domain\Core\IdentifierAwareCommand;
+
+class GetOneArticle extends IdentifierAwareCommand
 {
-    public string $id;
 }

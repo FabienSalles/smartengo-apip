@@ -4,7 +4,6 @@ namespace Smartengo\Tests\Unit\Domain\Article\QueryHandler;
 
 use PHPUnit\Framework\TestCase;
 use Smartengo\Domain\Article\Entity\Article;
-use Smartengo\Domain\Article\Query\GetOneArticle;
 use Smartengo\Domain\Article\QueryHandler\GetOneArticleHandler;
 use Smartengo\Domain\Article\Repository\ArticleRepository;
 use Smartengo\Domain\Core\Identifier;
@@ -27,7 +26,7 @@ class GetOneArticleHandlerTest extends TestCase
     {
         $this->repository = new InMemoryArticleRepository();
         $this->handler = new GetOneArticleHandler(
-            $this->getValidator(GetOneArticle::class),
+            $this->getValidator(),
             $this->repository
         );
     }

@@ -6,7 +6,6 @@ use Smartengo\Domain\Core\QueryBus;
 use Symfony\Component\Messenger\Exception\HandlerFailedException;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Messenger\Stamp\HandledStamp;
-use Symfony\Component\Messenger\Stamp\StampInterface;
 
 final class MessengerQueryBus implements QueryBus
 {
@@ -23,7 +22,7 @@ final class MessengerQueryBus implements QueryBus
         try {
             $envelope = $this->messageBus->dispatch($query);
 
-            /** @var StampInterface $handledStamp */
+            /** @var HandledStamp $handledStamp */
             $handledStamp = $envelope->last(HandledStamp::class);
 
             return $handledStamp->getResult();

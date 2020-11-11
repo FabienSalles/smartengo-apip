@@ -8,10 +8,9 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 trait ValidatorTrait
 {
-    protected function getValidator(string $className): ValidatorInterface
+    protected function getValidator(): ValidatorInterface
     {
         return (new ValidatorBuilder())
-            ->withEntity($className)
             ->build();
     }
 
