@@ -25,7 +25,7 @@ class InMemoryTagRepository implements TagRepository
     public function get(string $id): Tag
     {
         if (!isset($this->tags[$id])) {
-            throw new NotFoundException(sprintf('The Article %s does not exist', $id));
+            throw new NotFoundException(sprintf('The Tag %s does not exist', $id));
         }
 
         return $this->tags[$id];

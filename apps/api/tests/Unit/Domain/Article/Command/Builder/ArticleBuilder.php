@@ -14,6 +14,7 @@ abstract class ArticleBuilder implements Builder
     private string $reference;
     private string $content;
     private bool $draft;
+    private array $tags = [];
 
     public function __construct()
     {
@@ -46,6 +47,13 @@ abstract class ArticleBuilder implements Builder
         return $this;
     }
 
+    public function withTags(array $tags): self
+    {
+        $this->tags = $tags;
+
+        return $this;
+    }
+
     public function isDraft(): self
     {
         $this->draft = true;
@@ -67,6 +75,7 @@ abstract class ArticleBuilder implements Builder
         $article->reference = $this->reference;
         $article->content = $this->content;
         $article->draft = $this->draft;
+        $article->tags = $this->tags;
 
         return $article;
     }

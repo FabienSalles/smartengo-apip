@@ -12,6 +12,9 @@ Smartengo\Domain\Article\Command\Article:
             - NotBlank: ~
         content:
             - NotBlank: ~
+        tags:
+            - All:
+                  - Smartengo\Infrastructure\Symfony\Validator\TagExist: ~
 
 Smartengo\Domain\Article\Command\AddTag:
     constraints:

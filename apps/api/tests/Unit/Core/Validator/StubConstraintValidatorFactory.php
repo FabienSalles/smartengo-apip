@@ -4,6 +4,7 @@
 namespace Smartengo\Tests\Unit\Core\Validator;
 
 use Smartengo\Infrastructure\Repository\Article\InMemoryTagRepository;
+use Smartengo\Infrastructure\Symfony\Validator\TagExistValidator;
 use Smartengo\Infrastructure\Symfony\Validator\UniqueTagValidator;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Validator\Constraint;
@@ -19,9 +20,12 @@ class StubConstraintValidatorFactory implements ConstraintValidatorFactoryInterf
 
     public function __construct()
     {
+        $tagRepository = InMemoryTagRepository::getInstance();
+
         $this->stubValidators = [
+            TagExistValidator::class => new TagExistValidator($tagRepository),
             UniqueTagValidator::class => new UniqueTagValidator(
-                InMemoryTagRepository::getInstance(),
+                $tagRepository,
                 PropertyAccess::createPropertyAccessor()
             )
         ];

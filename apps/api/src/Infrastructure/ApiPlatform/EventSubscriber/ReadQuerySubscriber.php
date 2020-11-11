@@ -13,6 +13,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
+/**
+ * Replacement of the ReadListener in order to follow CQRS Principle and use a Query/QueryHandler concept
+ * We also add validation on parameters
+ */
 final class ReadQuerySubscriber implements EventSubscriberInterface
 {
     public const OPERATION_ATTRIBUTE_KEY = 'read_query';
