@@ -7,7 +7,7 @@ api/php-cs-fix:
 	./bin/api/php-cs-fixer fix
 
 api/test:
-	./bin/api/phpunit
+	./bin/api/phpunit --testdox
 
 api/phpstan:
 	$(DC_EXEC_API_PHP) bin/phpstan analyse --memory-limit=-1
