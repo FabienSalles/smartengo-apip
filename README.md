@@ -16,7 +16,7 @@ So I didn't use the basic functionalities of APIP, and I didn't finish the app..
 For fun and to experience new things, I used : 
 * **D**omain **D**riven **D**esign with an Hexagonal architecture
 * a **real** CQRS approach by overriding some concepts of APIP
-* [Detroit-school](https://github.com/testduble/contributing-tests/wiki/Detroit-school-TDD) TDD ([Classisict](https://martinfowler.com/articles/mocksArentStubs.html#SoShouldIBeAClassicistOrAMockist) testing)
+* [Detroit-school](https://github.com/testdouble/contributing-tests/wiki/Detroit-school-TDD) TDD ([Classisict](https://martinfowler.com/articles/mocksArentStubs.html#SoShouldIBeAClassicistOrAMockist) testing)
 
 ### Check if the app works
 
