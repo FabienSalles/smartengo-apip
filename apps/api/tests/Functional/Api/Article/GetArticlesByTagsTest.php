@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Smartengo\Tests\Functional\Api\Article;
-
 
 use Smartengo\Domain\Article\CommandHandler\AddArticleHandler;
 use Smartengo\Tests\Functional\Api\Route;
@@ -12,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 class GetArticlesByTagsTest extends ArticleTest
 {
     use TagTrait;
+
     /**
      * @test
      */

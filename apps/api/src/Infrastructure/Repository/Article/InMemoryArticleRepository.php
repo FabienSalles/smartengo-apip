@@ -29,7 +29,7 @@ class InMemoryArticleRepository implements ArticleRepository
     {
         return array_filter(
             $this->articles,
-            static fn (Article $article) => count(
+            static fn (Article $article) => 0 !== count(
                 array_intersect($tags, array_map(
                     static fn (Tag $tag) => $tag->getTitle(),
                     $article->getTags()->toArray()

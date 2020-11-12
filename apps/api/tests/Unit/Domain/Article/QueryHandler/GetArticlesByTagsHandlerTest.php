@@ -4,7 +4,6 @@ namespace Smartengo\Tests\Unit\Domain\Article\QueryHandler;
 
 use PHPUnit\Framework\TestCase;
 use Smartengo\Domain\Article\CommandHandler\AddArticleHandler;
-use Smartengo\Domain\Article\Entity\Article;
 use Smartengo\Domain\Article\Query\GetArticlesByTags;
 use Smartengo\Domain\Article\QueryHandler\GetArticlesByTagsHandler;
 use Smartengo\Domain\Article\Repository\ArticleRepository;
