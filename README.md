@@ -1,10 +1,15 @@
 # Smartengo App
+
 ## Intro
+
 This repository contains at the moment 2 app.
+
 ## Installation
+
 You just need to use the Makefile and launch `make up`
 Everything should works fine (at least on Ubuntu)
 ## the API Application
+
 API is based on an API Platform distribution.
 I preferred to focus on code quality and design than delivery.
 So I didn't use the basic functionalities of Symfony and APIP, and I didn't finish the app...
@@ -14,11 +19,13 @@ For fun and to experience new things, I used :
 * [Detroit-school](https://github.com/testduble/contributing-tests/wiki/Detroit-school-TDD) TDD ([Classisict](https://martinfowler.com/articles/mocksArentStubs.html#SoShouldIBeAClassicistOrAMockist) testing)
 
 ### Check if the app works
+
 Launch `make api/test` and look if everything is green on unit and functional tests
 
 ### More details of the architecture
 
 #### The tools
+
 I spent a lot of time on the docker part (mostly because I had [permissions issues](https://github.com/api-platform/api-platform/issues/319#issuecomment-307037562) with a [way of installing the APIP distribution](https://github.com/api-platform/api-platform/releases/tag/v2.5.7))
 After solving my problems, I installed PHPStan, PHPCsFixer, PHPUnit and some bash alias and makefiles
 You can use them in order to see if everything works fine.
@@ -43,7 +50,16 @@ This code contains 2 parts :
 I tried to change my way of write unit tests. I usually do more functional and integration tests because my way of writing unit test came from a mockist style which generated tests coupled to the implementation with little values and a weak refactoring capacity.
 The unit tests of this app are written in a Classisict way. It can be a bit more complicated to understand but they are more robust and less coupled to the source code.
 
+
+### The downside
+1. The App and endpoints aren't finish. I just implemented Article and Tag endpoints with some validations. There is no user management, no reactions and no comments entities.
+2. APIP Platform isn't really fit to CQRS and DDD architecture : listeners are ugly and swagger document does not like when we override APIP.
+
 ## The Auth Application
 Auth is a dockerized Express app.
 I use Typescript and an ORM (TypeORM) in order to create a migration for an user table
 I try to create and test an endpoint with Jest and SuperTest but it didn't works. I didn't look any further.
+
+## The Frontend Application
+
+I didn't do anything on it. I preferred to focus on my main skills. To be honest I learned Typescript and Angular only a few days ago [with the Tour of Heroes Tutorial](https://github.com/FabienSalles/angular-tour-of-heroes)...
