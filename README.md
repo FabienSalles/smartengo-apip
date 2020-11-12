@@ -32,7 +32,7 @@ I spent a lot of time on the docker part (mostly because I had [permissions issu
 After solving my problems, I installed PHPStan, PHPCsFixer, PHPUnit and some bash alias and makefiles
 You can use them in order to see if everything works fine.
 
-### The source architecture
+### The source code architecture
 
 The source code is separated in 3 parts:
 1. the `config` folder contains all configuration files link to Symfony and other dependencies.
@@ -45,7 +45,7 @@ There are many more classes than a standard APIP application. This is not really
 By focusing on business without the constraints of dependencies we can more easily answer them, speak the same langage, understand each other, build a decoupled sustainable application and thanks to all of that, I was able to get closer to a real TDD practice.
 
 ### The testing architecture
-This code contains 2 parts :
+There is 2 parts :
 1. the `Unit` part that help me to build the Domain (use InMemory repositories). 
 2. the `Functional` part that help me to build end-to-end endpoints
 
